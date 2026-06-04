@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VYBE — Who run the world ? VYBE</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0D0D0D; color: #fff; }
+  
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(13,13,13,0.9); backdrop-filter: blur(10px); }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-circle { width: 40px; height: 40px; background: #FF3D6B; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .logo-v { color: white; font-weight: 700; font-size: 20px; }
+  .logo-text { font-size: 22px; font-weight: 700; color: white; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 15px; transition: color 0.2s; }
+  .nav-links a:hover { color: #FF3D6B; }
+  .btn-nav { background: #FF3D6B; color: white; padding: 10px 24px; border-radius: 24px; text-decoration: none; font-size: 14px; font-weight: 600; }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; background: radial-gradient(ellipse at 50% 0%, rgba(255,61,107,0.15) 0%, transparent 70%); }
+  .hero-tag { display: inline-block; background: rgba(255,61,107,0.15); color: #FF3D6B; border: 1px solid rgba(255,61,107,0.3); padding: 8px 20px; border-radius: 24px; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 32px; }
+  .hero h1 { font-size: clamp(42px, 8vw, 80px); font-weight: 800; line-height: 1.05; margin-bottom: 24px; }
+  .hero h1 span { color: #FF3D6B; }
+  .hero p { font-size: 18px; color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 48px; line-height: 1.7; }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: flex; align-items: center; gap: 10px; background: #FF3D6B; color: white; padding: 16px 32px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 16px; transition: transform 0.2s, opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+  .btn-secondary { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); color: white; padding: 16px 32px; border-radius: 14px; text-decoration: none; font-weight: 600; font-size: 16px; border: 1px solid rgba(255,255,255,0.15); transition: transform 0.2s, background 0.2s; }
+  .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .store-icon { font-size: 22px; }
+  .hero-visual { margin-top: 80px; position: relative; display: flex; justify-content: center; }
+  .phone-mockup { width: 260px; background: #1a1a1a; border-radius: 40px; padding: 16px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 40px 80px rgba(255,61,107,0.2); }
+  .phone-screen { background: white; border-radius: 28px; overflow: hidden; }
+  .phone-header { background: #FF3D6B; padding: 20px 16px 16px; }
+  .phone-header h3 { color: white; font-size: 18px; font-weight: 700; }
+  .phone-header p { color: rgba(255,255,255,0.8); font-size: 12px; }
+  .phone-event { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; display: flex; gap: 10px; align-items: center; }
+  .event-img { width: 50px; height: 50px; border-radius: 10px; flex-shrink: 0; }
+  .event-info h4 { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .event-info p { font-size: 11px; color: #FF3D6B; }
+  .event-price { font-size: 12px; color: #888; }
+
+  .features { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+  .section-tag { color: #FF3D6B; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  .section-title { font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 60px; line-height: 1.2; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .feature-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px; transition: border-color 0.3s; }
+  .feature-card:hover { border-color: rgba(255,61,107,0.4); }
+  .feature-icon { width: 52px; height: 52px; background: rgba(255,61,107,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
+  .feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+  .feature-card p { color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.6; }
+
+  .how { padding: 100px 48px; background: rgba(255,61,107,0.03); }
+  .how-inner { max-width: 1200px; margin: 0 auto; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-top: 60px; }
+  .step { text-align: center; }
+  .step-num { width: 56px; height: 56px; background: #FF3D6B; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; margin: 0 auto 20px; }
+  .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+  .step p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.6; }
+
+  .social-proof { padding: 80px 48px; max-width: 900px; margin: 0 auto; text-align: center; }
+  .stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 48px; }
+  .stat h2 { font-size: 42px; font-weight: 800; color: #FF3D6B; }
+  .stat p { color: rgba(255,255,255,0.55); font-size: 14px; margin-top: 4px; }
+
+  .cta { padding: 100px 48px; text-align: center; background: radial-gradient(ellipse at 50% 100%, rgba(255,61,107,0.12) 0%, transparent 70%); }
+  .cta h2 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; margin-bottom: 20px; }
+  .cta p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: 48px; }
+
+  footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-links a:hover { color: #FF3D6B; }
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 13px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .features, .how, .cta { padding: 60px 24px; }
+    .stats { gap: 32px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-circle"><span class="logo-v">V</span></div>
+    <span class="logo-text">VYBE</span>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Fonctionnalités</a>
+    <a href="#how">Comment ça marche</a>
+    <a href="#cgu">CGU</a>
+    <a href="#cgs">CGS</a>
+    <a href="mailto:contact@vybe.app">Contact</a>
+  </div>
+  <a href="#download" class="btn-nav">Télécharger</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-tag">✨ Application 100% féminine</div>
+    <h1>Who run the world ?<br><span>VYBE</span></h1>
+    <p>La première app de découverte d'événements pensée exclusivement pour les femmes. Trouve des soirées, rejoins ta tribu, vis des moments inoubliables.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">
+        <span class="store-icon">🍎</span>
+        <div>
+          <div style="font-size:11px;font-weight:400;opacity:0.8">Disponible sur</div>
+          <div>App Store</div>
+        </div>
+      </a>
+      <a href="#" class="btn-secondary">
+        <span class="store-icon">🤖</span>
+        <div>
+          <div style="font-size:11px;font-weight:400;opacity:0.8">Disponible sur</div>
+          <div>Google Play</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <h3>✨ VYBE</h3>
+            <p>Who run the world ?</p>
+          </div>
+          <div class="phone-event">
+            <div class="event-img" style="background: linear-gradient(135deg, #FF3D6B, #ff8fab);"></div>
+            <div class="event-info">
+              <h4>Festival Electro Paris</h4>
+              <p>En continu · 10.00 €</p>
+              <p class="event-price">🎵 Musique</p>
+            </div>
+          </div>
+          <div class="phone-event">
+            <div class="event-img" style="background: linear-gradient(135deg, #8B5CF6, #c4b5fd);"></div>
+            <div class="event-info">
+              <h4>Brunch Rooftop Paris</h4>
+              <p>21 Juin · 15.00 €</p>
+              <p class="event-price">🍕 Food</p>
+            </div>
+          </div>
+          <div class="phone-event">
+            <div class="event-img" style="background: linear-gradient(135deg, #06b6d4, #67e8f9);"></div>
+            <div class="event-info">
+              <h4>Soirée Networking</h4>
+              <p>22 Juin · 8.00 €</p>
+              <p class="event-price">💼 Tech</p>
+            </div>
+          </div>
+          <div style="padding: 12px 16px; text-align: center;">
+            <div style="display:flex; justify-content:space-around; padding: 8px 0;">
+              <span style="font-size:20px">🔍</span>
+              <span style="font-size:20px">🤍</span>
+              <span style="font-size:20px;background:#FF3D6B;border-radius:50%;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;">+</span>
+              <span style="font-size:20px">💬</span>
+              <span style="font-size:20px">👤</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="section-tag">Pourquoi VYBE ?</div>
+  <h2 class="section-title">Tout ce dont tu as besoin<br>pour vivre tes soirées</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">👑</div>
+      <h3>100% féminin & sécurisé</h3>
+      <p>VYBE est réservée aux femmes. Chaque profil est vérifié pour que tu puisses sortir en toute confiance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌸</div>
+      <h3>Des événements pour toi</h3>
+      <p>Concerts, soirées, brunches, networking, sport... Trouve l'événement qui te ressemble parmi des centaines d'annonces.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Profils vérifiés</h3>
+      <p>Le badge de vérification garantit que tu rencontres de vraies personnes. Ton identité, ta sécurité.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💳</div>
+      <h3>Paiement sécurisé</h3>
+      <p>Réservation et paiement en quelques secondes. Remboursement garanti si l'événement est annulé.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>Messagerie intégrée</h3>
+      <p>Échange avec les organisatrices et les autres participantes directement dans l'app.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Organise tes événements</h3>
+      <p>Tu veux créer ta soirée ? VYBE te donne tous les outils pour organiser et gérer ton événement.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-tag">Comment ça marche</div>
+    <h2 class="section-title">En 3 étapes, vis ta soirée</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Crée ton profil</h3>
+        <p>Inscris-toi en quelques minutes et fais vérifier ton profil pour rejoindre la communauté VYBE.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Explore les événements</h3>
+        <p>Parcours les événements près de chez toi, filtre par ambiance, catégorie ou date.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Rejoins la fête</h3>
+        <p>Réserve ta place en un clic, reçois ton QR code et profite de ta soirée !</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-proof">
+  <div class="section-tag">VYBE en chiffres</div>
+  <h2 class="section-title">La communauté qui grandit</h2>
+  <div class="stats">
+    <div class="stat">
+      <h2>100+</h2>
+      <p>Événements disponibles</p>
+    </div>
+    <div class="stat">
+      <h2>9</h2>
+      <p>Catégories</p>
+    </div>
+    <div class="stat">
+      <h2>100%</h2>
+      <p>Féminin & sécurisé</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="download">
+  <h2>Prête à rejoindre<br>la tribu VYBE ? 👑</h2>
+  <p>Télécharge l'app gratuitement et découvre des centaines d'événements près de chez toi.</p>
+  <div class="hero-buttons">
+    <a href="#" class="btn-primary">
+      <span class="store-icon">🍎</span>
+      <div>
+        <div style="font-size:11px;font-weight:400;opacity:0.8">Télécharger sur</div>
+        <div>App Store</div>
+      </div>
+    </a>
+    <a href="#" class="btn-secondary">
+      <span class="store-icon">🤖</span>
+      <div>
+        <div style="font-size:11px;font-weight:400;opacity:0.8">Télécharger sur</div>
+        <div>Google Play</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">
+    <div class="logo-circle"><span class="logo-v">V</span></div>
+    <span class="logo-text">VYBE</span>
+  </div>
+  <div class="footer-links">
+    <a href="#cgu" id="cgu">CGU Utilisatrices</a>
+    <a href="#cgs" id="cgs">CGS Organisatrices</a>
+    <a href="mailto:contact@vybe.app">Contact</a>
+    <a href="mailto:contact@vybe.app">Signaler un problème</a>
+  </div>
+  <p class="footer-copy">© 2026 Mehdi HELIMI — VYBE. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
