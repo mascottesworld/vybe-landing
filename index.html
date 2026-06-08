@@ -316,7 +316,7 @@ footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.07); displ
     </div>
   </div>
 </section>
-<section <section id="cgu-content" style="padding:80px 48px;max-width:900px;margin:0 auto;display:none">
+<section id="cgu-content" style="padding:80px 48px;max-width:900px;margin:0 auto;display:none">
 <h2 style="color:#FF3D6B;margin-bottom:8px">Conditions Générales d'Utilisation et de Services — VYBE Utilisatrices</h2>
 <p style="color:rgba(255,255,255,0.4);margin-bottom:40px;font-size:13px">Dernière modification : Juin 2026</p>
 
@@ -408,7 +408,27 @@ footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.07); displ
 
 <h3 style="color:white;margin-bottom:12px;margin-top:32px">8. Loi applicable</h3>
 <p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Les CGS sont soumises aux dispositions de la loi française. En cas de litige, le Tribunal judiciaire d'Évry-Courcouronnes est compétent.</p>
-</section></section>
+</section>
+
+<section id="delete-account" style="padding:80px 48px;max-width:900px;margin:0 auto;display:none">
+<h2 style="color:#FF3D6B;margin-bottom:8px">Suppression de compte VYBE</h2>
+<p style="color:rgba(255,255,255,0.4);margin-bottom:40px;font-size:13px">Application VYBE — Mehdi HELIMI</p>
+
+<h3 style="color:white;margin-bottom:12px;margin-top:32px">Comment supprimer mon compte ?</h3>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Pour demander la suppression de votre compte VYBE et de toutes les données associées, envoyez un email à <a href="mailto:contact@vybe.app" style="color:#FF3D6B">contact@vybe.app</a> avec l'objet <strong style="color:white">"Suppression de compte"</strong> en précisant l'adresse email associée à votre compte.</p>
+
+<h3 style="color:white;margin-bottom:12px;margin-top:32px">Quelles données sont supprimées ?</h3>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:8px">• Votre profil et photo de profil</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:8px">• Vos messages</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:8px">• Vos réservations et historique d'événements</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">• Toutes vos données personnelles</p>
+
+<h3 style="color:white;margin-bottom:12px;margin-top:32px">Délai de traitement</h3>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Votre demande sera traitée dans un délai maximum de 30 jours. Certaines données peuvent être conservées pour des obligations légales ou comptables.</p>
+
+<h3 style="color:white;margin-bottom:12px;margin-top:32px">Contact</h3>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Pour toute question : <a href="mailto:contact@vybe.app" style="color:#FF3D6B">contact@vybe.app</a> — 15 place de la Fontaine, 91830 Le Coudray-Montceaux.</p>
+</section>
 <footer>
   <div class="footer-logo">
     <div class="logo-circle">V</div>
@@ -418,19 +438,25 @@ footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.07); displ
     <a href="#cgu-content">CGU Utilisatrices</a>
     <a href="#cgs-content">CGS Organisatrices</a>
     <a href="mailto:contact@vybe.app">Contact</a>
-    <a href="mailto:contact@vybe.app">Signaler un problème</a>
+    <a href="#delete-account">Supprimer mon compte</a><a href="mailto:contact@vybe.app">Signaler un problème</a>
   </div>
   <p class="footer-copy">© 2026 Mehdi HELIMI — VYBE. Tous droits réservés.</p>
 </footer>
 <script>
-document.querySelectorAll('a[href="#cgu-content"], a[href="#cgs-content"]').forEach(function(link) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.querySelector(this.getAttribute('href'));
-    var allSections = document.querySelectorAll('#cgu-content, #cgs-content');
-    allSections.forEach(function(s) { s.style.display = 'none'; });
-    target.style.display = 'block';
-    target.scrollIntoView({ behavior: 'smooth' });
+window.addEventListener('load', function() {
+  var links = document.querySelectorAll('a[href="#cgu-content"], a[href="#cgs-content"], a[href="#delete-account"]');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = this.getAttribute('href').replace('#', '');
+      var target = document.getElementById(id);
+      var allSections = [document.getElementById('cgu-content'), document.getElementById('cgs-content'), document.getElementById('delete-account')];
+      allSections.forEach(function(s) { if(s) s.style.display = 'none'; });
+      if(target) {
+        target.style.display = 'block';
+        setTimeout(function() { target.scrollIntoView({ behavior: 'smooth' }); }, 50);
+      }
+    });
   });
 });
 </script>
