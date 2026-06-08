@@ -316,20 +316,43 @@ footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.07); displ
     </div>
   </div>
 </section>
+<section id="cgu-content" style="padding:80px 48px;max-width:900px;margin:0 auto;display:none">
+<h2 style="color:#FF3D6B;margin-bottom:32px">Conditions Générales d'Utilisation — Utilisatrices</h2>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Éditeur : Mehdi HELIMI, 15 place de la Fontaine, 91830 Le Coudray-Montceaux. Contact : contact@vybe.app</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">L'application VYBE est réservée exclusivement aux femmes majeures. En créant un compte, vous certifiez être une femme âgée de 18 ans ou plus.</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">VYBE se réserve le droit de supprimer tout compte ne respectant pas cette condition. Les données personnelles sont traitées conformément au RGPD.</p>
+</section>
 
+<section id="cgs-content" style="padding:80px 48px;max-width:900px;margin:0 auto;display:none">
+<h2 style="color:#FF3D6B;margin-bottom:32px">Conditions Générales de Service — Organisatrices</h2>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">Éditeur : Mehdi HELIMI, 15 place de la Fontaine, 91830 Le Coudray-Montceaux. Contact : contact@vybe.app</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">En tant qu'organisatrice (Vybeur), vous vous engagez à proposer des événements conformes aux lois en vigueur et réservés à un public féminin adulte.</p>
+<p style="color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:16px">VYBE prélève une commission sur chaque réservation. Les versements sont effectués sous 7 jours ouvrés après l'événement.</p>
+</section>
 <footer>
   <div class="footer-logo">
     <div class="logo-circle">V</div>
     <span class="logo-text" style="font-size:18px">VYBE</span>
   </div>
   <div class="footer-links">
-    <a href="#" id="cgu">CGU Utilisatrices</a>
-    <a href="#" id="cgs">CGS Organisatrices</a>
+    <a href="#cgu-content">CGU Utilisatrices</a>
+    <a href="#cgs-content">CGS Organisatrices</a>
     <a href="mailto:contact@vybe.app">Contact</a>
     <a href="mailto:contact@vybe.app">Signaler un problème</a>
   </div>
   <p class="footer-copy">© 2026 Mehdi HELIMI — VYBE. Tous droits réservés.</p>
 </footer>
-
+<script>
+document.querySelectorAll('a[href="#cgu-content"], a[href="#cgs-content"]').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    var allSections = document.querySelectorAll('#cgu-content, #cgs-content');
+    allSections.forEach(function(s) { s.style.display = 'none'; });
+    target.style.display = 'block';
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
